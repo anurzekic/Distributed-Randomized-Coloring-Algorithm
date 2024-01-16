@@ -180,17 +180,17 @@ def main():
     
     # Basic testcases with a small graph where the degrees of nodes are different
     print("Basic testcase:")
-    generate_random_graphs(degree_min=5, degree_max=10, num_nodes_min=10, num_nodes_max=20, debug=DEBUG, final_state_output = FINAL_STATE_OUTPUT)
+    generate_random_graphs(degree_min=5, degree_max=10, num_nodes_min=10, num_nodes_max=20, debug=DEBUG, final_state_output=FINAL_STATE_OUTPUT)
     
     # More advanced testcases with a couple hundred nodes
     print("Advanced testcase 1:")
-    generate_random_graphs(degree_min=10, degree_max=100, num_nodes_min=100, num_nodes_max=400, debug=DEBUG, final_state_output = FINAL_STATE_OUTPUT)
+    generate_random_graphs(degree_min=10, degree_max=100, num_nodes_min=100, num_nodes_max=400, debug=DEBUG, final_state_output=FINAL_STATE_OUTPUT)
     print("Advanced testcase 2:")
-    generate_random_graphs(degree_min=20, degree_max=200, num_nodes_min=200, num_nodes_max=600, debug=DEBUG, final_state_output = FINAL_STATE_OUTPUT)
+    generate_random_graphs(degree_min=20, degree_max=200, num_nodes_min=200, num_nodes_max=600, debug=DEBUG, final_state_output=FINAL_STATE_OUTPUT)
     print("Advanced testcase 3:")
-    generate_random_graphs(degree_min=40, degree_max=400, num_nodes_min=400, num_nodes_max=800, debug=DEBUG, final_state_output = FINAL_STATE_OUTPUT)
+    generate_random_graphs(degree_min=40, degree_max=400, num_nodes_min=400, num_nodes_max=800, debug=DEBUG, final_state_output=FINAL_STATE_OUTPUT)
     print("Advanced testcase 4:")
-    generate_random_graphs(degree_min=200, degree_max=800, num_nodes_min=800, num_nodes_max=1200, debug=DEBUG, final_state_output = FINAL_STATE_OUTPUT)
+    generate_random_graphs(degree_min=200, degree_max=800, num_nodes_min=800, num_nodes_max=1200, debug=DEBUG, final_state_output=FINAL_STATE_OUTPUT)
     
 
 if __name__ == "__main__":
