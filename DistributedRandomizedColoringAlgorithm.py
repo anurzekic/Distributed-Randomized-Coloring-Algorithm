@@ -14,7 +14,7 @@ def exchange_candidate_colors(graph):
         for neighbor_node in graph.nodes[node]["neighbors"]:            
             graph.nodes[node]["neighbors_candidate_color"].append(graph.nodes[neighbor_node]["candidate_color"])
             
-            # Move to its own function
+            # Save colors of permanently colored neighbours to be used in the recolor_nodes function
             if graph.nodes[neighbor_node]["permanently_colored"]:
                 if graph.nodes[neighbor_node]["candidate_color"] not in graph.nodes[node]["permantently_colored_neighbors_colors"]:
                     graph.nodes[node]["permantently_colored_neighbors_colors"].append(graph.nodes[neighbor_node]["candidate_color"])
@@ -25,7 +25,8 @@ def recolor_nodes(graph):
             valid_colors = list(set(graph.nodes[node]["available_colors"]) - 
                                 set(graph.nodes[node]["permantently_colored_neighbors_colors"])) 
             graph.nodes[node]["candidate_color"] = select_random_candidate_color(valid_colors)
-            
+
+# Ensures that all nodes are permanently colored and that they have a valid color selected
 def check_if_all_nodes_colored(graph):
     for node in graph.nodes:
         if graph.nodes[node]["permanently_colored"] == False or graph.nodes[node]["candidate_color"] == None:
@@ -66,27 +67,34 @@ def calculate_coloring(graph):
     final_coloring = []
     for node in graph.nodes:
         final_coloring.append(graph.nodes[node]["candidate_color"])
-    return len(set(final_coloring))
+    final_colors_set = set(final_coloring)
+    return final_colors_set, len(final_colors_set)
 
 def distributed_randomized_coloring_algorithm(graph, delta):
     color_set = create_color_set(delta)
+    iterations = 0
     # Initialize graph
-    initialize(graph, color_set)         
+    initialize(graph, color_set)
     
     while not check_if_all_nodes_colored(graph):
+        iterations += 1
         recolor_nodes(graph)
         exchange_candidate_colors(graph)
         set_or_discard_color(graph)
 
-    print(f"\nDelta + 1: {delta + 1}.\nColored graph with {calculate_coloring(graph)} colors.")
+    print("\nFinished simulation.")
+    colors_set, colors_count = calculate_coloring(graph)
+    print(f"Delta + 1: {delta + 1}.\nColored graph with {colors_count} colors.")
+    print(f"Final set of colors:\n {colors_set}")
+    print(f"Number of simulated rounds done to achieve the coloring: {iterations}.")
 
 def main():
-    DELTA = 5
+    DELTA = 100
     # Generate a random 5-regular graph
-    G = nx.random_regular_graph(DELTA, 10)  # 10 nodes
+    G = nx.random_regular_graph(DELTA, 200)  # 10 nodes
     distributed_randomized_coloring_algorithm(G, DELTA)
-    nx.draw(G, with_labels=True, font_weight='bold', node_color=[G.nodes[node]["candidate_color"] for node in G.nodes], edge_color='gray')
-    plt.show()
+    # nx.draw(G, with_labels=True, font_weight='bold', node_color=[G.nodes[node]["candidate_color"] for node in G.nodes], edge_color='gray')
+    # plt.show()
 
 if __name__ == "__main__":
     main()
