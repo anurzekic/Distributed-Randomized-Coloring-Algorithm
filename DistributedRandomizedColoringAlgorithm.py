@@ -1,6 +1,5 @@
 import networkx as nx
 import random
-import matplotlib.pyplot as plt
 
 # Generates color set of size delta + 1
 def create_color_set(size):
@@ -99,19 +98,29 @@ def distributed_randomized_coloring_algorithm(graph, delta):
         exchange_candidate_colors(graph)
         set_or_discard_color(graph)
 
-    print("Finished simulation.")
+    print("Finished simulation.\n")
+    print_final_state_of_graph(graph)
     colors_set, colors_count = calculate_coloring(graph)
-    print(f"Delta + 1: {delta + 1}.\nColored graph with {colors_count} colors.")
+    print(f"\nDelta + 1: {delta + 1}.\nColored graph with {colors_count} colors.")
     print(f"Final set of colors:\n {colors_set}")
     print(f"Number of simulated rounds done to achieve the coloring: {iterations}.")
 
+# Prints out the final coloring of each node and its neighbors candidate color sets
+def print_final_state_of_graph(graph):
+    print("Final state of graph:")
+    print(f"_______________________________________________________________________________")
+    
+    for node in graph.nodes:
+        print(f"Permantent color of node: {node} is color: {graph.nodes[node]["candidate_color"]}")
+        print(f"Final state of candidate colors of neighbors: {graph.nodes[node]["neighbors_candidate_color"]}")
+        print(f"_______________________________________________________________________________")
+
 def main():
-    DELTA = 2
+    DELTA = 5
     # Generate a random 5-regular graph
-    G = nx.random_regular_graph(DELTA, 4)  # 10 nodes
+    G = nx.random_regular_graph(DELTA, 10)  # 10 nodes
     distributed_randomized_coloring_algorithm(G, DELTA)
-    nx.draw(G, with_labels=True, font_weight='bold', node_color=[G.nodes[node]["candidate_color"] for node in G.nodes], edge_color='gray')
-    plt.show()
+
 
 if __name__ == "__main__":
     main()
