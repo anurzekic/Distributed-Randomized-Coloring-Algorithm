@@ -26,3 +26,4 @@ $ python DistributedRandomizedColoringAlgorithm.py
 ## References
 - https://networkx.org/
 - https://networkx.org/documentation/stable/reference/index.html
+- https://networkx.org/documentation/stable/install.html
