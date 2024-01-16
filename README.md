@@ -27,3 +27,6 @@ $ python DistributedRandomizedColoringAlgorithm.py
 - https://networkx.org/
 - https://networkx.org/documentation/stable/reference/index.html
 - https://networkx.org/documentation/stable/install.html
+- https://networkx.org/documentation/stable/reference/generated/networkx.generators.random_graphs.fast_gnp_random_graph.html
+- https://networkx.org/documentation/stable/reference/generated/networkx.generators.random_graphs.random_regular_graph.html
+- https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model
